@@ -27,6 +27,21 @@ public:
 
 	bool is_empty();
 	Node<T>* find(const T& val);
+	class Iterator {
+		Node<T>* current;
+	public:
+		Iterator() : current(nullptr) {}
+		Iterator(Node<T>* pos) : current(pos) {}
+		Iterator(const Iterator& other) : current(other.current) {}
+
+		Iterator& operator=(const Iterator& other);
+		T& operator*();
+		bool operator!=(const Iterator& other);
+		Iterator operator++(int);
+		Iterator& operator++();
+	};
+	Iterator begin() { return Iterator(_head); }
+	Iterator end() { return Iterator(nullptr); }
 };
 
 template <class T>
@@ -212,4 +227,39 @@ Node<T>* List<T>::find(const T& val) {
 		current = current->next;
 	}
 	return nullptr;
+}
+
+
+template <class T>
+typename List<T>::Iterator& List<T>::Iterator::operator=(const Iterator& other) {
+	if (this != &other) {
+		current = other.current;
+	}
+	return *this;
+}
+
+template <class T>
+T& List<T>::Iterator::operator*() {
+	if (current == nullptr) throw "Error: dereferencing null iterator";
+	return current->value;
+}
+
+template <class T>
+bool List<T>::Iterator::operator!=(const Iterator& other) {
+	return current != other.current;
+}
+
+template <class T>
+typename List<T>::Iterator List<T>::Iterator::operator++(int) {
+	if (current == nullptr) throw "Error: incrementing null iterator";
+	Iterator temp = *this;
+	current = current->next;
+	return temp;
+}
+
+template <class T>
+typename List<T>::Iterator& List<T>::Iterator::operator++() {
+	if (current == nullptr) throw "Error: incrementing null iterator";
+	current = current->next;
+	return *this;
 }

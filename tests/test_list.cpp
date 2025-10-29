@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "List.h" 
+#include "list.h" 
 
 TEST(ListTest, DefaultConstructor) {
     List<int> list;
@@ -221,4 +221,43 @@ TEST(ListTest, ComplexOperationsSequence) {
     list.pop_front();
     list.erase(0);
     EXPECT_FALSE(list.is_empty());
+}
+//TEST(TestLibLib, can_iterate) {
+//    List<int> list;
+//    for (int i = 0; i < 10; i++) {
+//        list.push_back(i + 1);
+//    }
+//    Node<int>* cur = list._head;
+//    while (cur != nullptr) {
+//        std::cout << cur->data << " ";
+//        cur = cur->next;
+//    }
+//    std::vector<int> vec = { 1,4,5,6 };
+//    for (std::vector<int>::iterator it = vec.begin(); it != vec.end(); it++) {
+//        std::cout << *it << " ";
+//    }
+//}
+TEST(ListTest, can_read) {
+    List<int>list;
+    for (int i = 0; i < 10; i++) {
+        list.push_back(i + 1);
+    }
+    int expected_val = 1;
+    for (List<int>::Iterator it = list.begin(); it != list.end(); it++) {
+        expected_val++;
+    }
+}
+TEST(ListTest, can_write) {
+    List<int>list;
+    int expected_val = 1;
+    for (List<int>::Iterator it = list.begin(); it != list.end(); it++) {
+        EXPECT_EQ(*it, expected_val);
+        expected_val++;
+    }
+}
+TEST(ListTest, is_empty) {
+    List<int>list;
+    for (List<int>::Iterator it = list.begin(); it != list.end(); it++) {
+        *it = 0;
+    }
 }
