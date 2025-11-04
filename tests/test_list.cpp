@@ -223,33 +223,83 @@ TEST(ListTest, ComplexOperationsSequence) {
     EXPECT_FALSE(list.is_empty());
 }
 
-TEST(ListTest, can_read) {
-    List<int>list;
-    for (int i = 0; i < 10; i++) {
-        list.push_back(i + 1);
+//TEST(ListTest, can_read) {
+//    List<int>list;
+//    for (int i = 0; i < 10; i++) {
+//        list.push_back(i + 1);
+//    }
+//    int expected_val = 1;
+//    for (List<int>::Iterator it = list.begin(); it != list.end(); it++) {
+//        *it = expected_val;
+//        expected_val++;
+//    }
+//    expected_val = 1;
+//    for (List<int>::Iterator it = list.begin(); it != list.end(); it++) {
+//        EXPECT_EQ(*it, expected_val);
+//        expected_val++;
+//    }
+//}
+//TEST(ListTest, can_write) {
+//    List<int>list;
+//    int expected_val = 1;
+//    for (List<int>::Iterator it = list.begin(); it != list.end(); it++) {
+//        EXPECT_EQ(*it, expected_val);
+//        expected_val++;
+//    }
+//}
+//TEST(ListTest, is_empty) {
+//    List<int>list;
+//    for (List<int>::Iterator it = list.begin(); it != list.end(); it++) {
+//        *it = 0;
+//    }
+//}
+
+TEST(IteratorTest, ReadWithPostIncrement) {
+    List<int> list;
+    for (int i = 0; i < 5; i++) {
+        list.push_back(i * 3 + 1); 
     }
-    int expected_val = 1;
+    std::vector<int> result;
     for (List<int>::Iterator it = list.begin(); it != list.end(); it++) {
-        *it = expected_val;
-        expected_val++;
+        result.push_back(*it);
     }
-    expected_val = 1;
-    for (List<int>::Iterator it = list.begin(); it != list.end(); it++) {
-        EXPECT_EQ(*it, expected_val);
-        expected_val++;
-    }
+    std::vector<int> expected = { 1, 4, 7, 10, 13 };
+    EXPECT_EQ(result, expected);
 }
-TEST(ListTest, can_write) {
-    List<int>list;
-    int expected_val = 1;
-    for (List<int>::Iterator it = list.begin(); it != list.end(); it++) {
-        EXPECT_EQ(*it, expected_val);
-        expected_val++;
+
+TEST(IteratorTest, WriteWithPreIncrement) {
+    List<int> list;
+    for (int i = 0; i < 5; i++) {
+        list.push_back(0);
     }
-}
-TEST(ListTest, is_empty) {
-    List<int>list;
-    for (List<int>::Iterator it = list.begin(); it != list.end(); it++) {
-        *it = 0;
+    int new_value = 5;
+    for (List<int>::Iterator it = list.begin(); it != list.end(); ++it) {
+        *it = new_value;
+        new_value *= 2;
     }
+    std::vector<int> result;
+    for (List<int>::Iterator it = list.begin(); it != list.end(); ++it) {
+        result.push_back(*it);
+    }
+    std::vector<int> expected = { 5, 10, 20, 40, 80 };
+    EXPECT_EQ(result, expected);
 }
+
+TEST(IteratorTest, EmptyListWithBothIncrementTypes) {
+    List<int> list;
+    List<int>::Iterator begin = list.begin();
+    List<int>::Iterator end = list.end();
+    EXPECT_TRUE(begin == end);
+    EXPECT_FALSE(begin != end);
+    int iteration_count_post = 0;
+    for (List<int>::Iterator it = list.begin(); it != list.end(); it++) {
+        iteration_count_post++;
+    }
+    EXPECT_EQ(iteration_count_post, 0);
+    int iteration_count_pre = 0;
+    for (List<int>::Iterator it = list.begin(); it != list.end(); ++it) {
+        iteration_count_pre++;
+    }
+    EXPECT_EQ(iteration_count_pre, 0);
+}
+

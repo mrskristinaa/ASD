@@ -39,6 +39,7 @@ public:
 		bool operator!=(const Iterator& other);
 		Iterator operator++(int);
 		Iterator& operator++();
+		bool operator==(const Iterator& other) { return current == other.current; }
 	};
 	Iterator begin() { return Iterator(_head); }
 	Iterator end() { return Iterator(nullptr); }
