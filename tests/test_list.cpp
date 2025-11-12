@@ -303,3 +303,47 @@ TEST(IteratorTest, EmptyListWithBothIncrementTypes) {
     EXPECT_EQ(iteration_count_pre, 0);
 }
 
+#include <gtest/gtest.h>
+#include "stack.h"
+
+TEST(StackListWithDeleteTest, ConstructorDestructor) {
+    StackList<int>* stack = new StackList<int>();
+    stack->push(1);
+    stack->push(2);
+    stack->push(3);
+    EXPECT_EQ(stack->size(), 3);
+    delete stack;  
+}
+
+TEST(StackListWithDeleteTest, CopyConstructor) {
+    StackList<int> original;
+    original.push(1);
+    original.push(2);
+
+    StackList<int> copy(original); 
+    EXPECT_EQ(copy.size(), 2);
+    EXPECT_EQ(copy.top(), 2);
+}
+
+TEST(StackListWithDeleteTest, AssignmentOperator) {
+    StackList<int> stack1;
+    stack1.push(10);
+    stack1.push(20);
+
+    StackList<int> stack2;
+    stack2 = stack1; 
+
+    EXPECT_EQ(stack2.size(), 2);
+    EXPECT_EQ(stack2.top(), 20);
+}
+
+TEST(StackListWithDeleteTest, MemoryManagement) {
+    {
+        StackList<int> stack;
+        for (int i = 0; i < 100; i++) {
+            stack.push(i);
+        }
+
+    }
+}
+
