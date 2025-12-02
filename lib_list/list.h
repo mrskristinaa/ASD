@@ -1,4 +1,5 @@
 #pragma once
+#include <stdexcept>
 template <class T>
 struct Node {
 	T value;
@@ -12,6 +13,7 @@ class List {
 public:
 	List() :_head(nullptr), _tail(nullptr), _count(0) {}
 	List(const List& other);
+	List& operator=(const List& other);
 	~List();
 
 	void push_front(const T& val) noexcept;
@@ -25,7 +27,8 @@ public:
 	void erase(Node<T>* node);
 	void clear();
 
-	bool is_empty();
+	bool is_empty() const;
+	int size() const noexcept;
 	Node<T>* find(const T& val);
 	class Iterator {
 		Node<T>* current;
@@ -56,7 +59,18 @@ List<T>::List(const List& other) : _head(nullptr), _tail(nullptr), _count(0) {
 		current = current->next;
 	}
 }
-
+template <class T>
+List<T>& List<T>::operator=(const List& other) {
+	if (this != &other) {
+		clear();
+		Node<T>* current = other._head;
+		while (current != nullptr) {
+			push_back(current->value);
+			current = current->next;
+		}
+	}
+	return *this;
+}
 template <class T>
 List<T>::~List() {
 	clear();
@@ -86,7 +100,7 @@ void List<T>::push_back(const T& val) noexcept {
 
 template <class T>
 void List<T>::insert(Node<T>* node, const T& val) {
-	if (node == nullptr) throw "Error: null node";
+	if (node == nullptr) throw std::logic_error ("Error: null node");
 	Node<T>* new_node = new Node<T>(val, node->next);
 	node->next = new_node;
 	if (_tail == node) {
@@ -97,7 +111,7 @@ void List<T>::insert(Node<T>* node, const T& val) {
 
 template <class T>
 void List<T>::insert(int pos, const T& val) {
-	if (pos < 0 || pos > _count) throw "Error: position out of range";
+	if (pos < 0 || pos > _count) throw std::logic_error ("Error: position out of range");
 
 	if (pos == 0) {
 		push_front(val);
@@ -120,7 +134,7 @@ void List<T>::insert(int pos, const T& val) {
 
 template <class T>
 void List<T>::pop_front() {
-	if (is_empty()) throw "Error: list is empty";
+	if (is_empty()) throw std::logic_error ("Error: list is empty");
 
 	Node<T>* temp = _head;
 	_head = _head->next;
@@ -134,7 +148,7 @@ void List<T>::pop_front() {
 
 template <class T>
 void List<T>::pop_back() {
-	if (is_empty()) throw "Error: list is empty";
+	if (is_empty()) throw std::logic_error ("Error: list is empty");
 
 	if (_head == _tail) {
 		delete _head;
@@ -156,7 +170,7 @@ void List<T>::pop_back() {
 
 template <class T>
 void List<T>::erase(Node<T>* node) {
-	if (node == nullptr || is_empty()) throw "Error: invalid node or empty list";
+	if (node == nullptr || is_empty()) throw std::logic_error ("Error: invalid node or empty list");
 
 	if (node == _head) {
 		pop_front();
@@ -168,7 +182,7 @@ void List<T>::erase(Node<T>* node) {
 		prev = prev->next;
 	}
 
-	if (prev == nullptr) throw "Error: node not found in list";
+	if (prev == nullptr) throw std::logic_error ("Error: node not found in list");
 
 	prev->next = node->next;
 	if (node == _tail) {
@@ -181,7 +195,7 @@ void List<T>::erase(Node<T>* node) {
 
 template <class T>
 void List<T>::erase(int pos) {
-	if (pos < 0 || pos >= _count) throw "Error: position out of range";
+	if (pos < 0 || pos >= _count) throw std::logic_error ("Error: position out of range");
 
 	if (pos == 0) {
 		pop_front();
@@ -214,10 +228,13 @@ void List<T>::clear() {
 }
 
 template <class T>
-bool List<T>::is_empty() {
+bool List<T>::is_empty() const {
 	return _head == nullptr;
 }
-
+template <class T>
+int List<T>::size() const noexcept {
+	return _count;
+}
 template <class T>
 Node<T>* List<T>::find(const T& val) {
 	Node<T>* current = _head;
@@ -241,7 +258,7 @@ typename List<T>::Iterator& List<T>::Iterator::operator=(const Iterator& other) 
 
 template <class T>
 T& List<T>::Iterator::operator*() {
-	if (current == nullptr) throw "Error: dereferencing null iterator";
+	if (current == nullptr) throw std::logic_error ("Error: dereferencing null iterator");
 	return current->value;
 }
 
@@ -252,7 +269,7 @@ bool List<T>::Iterator::operator!=(const Iterator& other) {
 
 template <class T>
 typename List<T>::Iterator List<T>::Iterator::operator++(int) {
-	if (current == nullptr) throw "Error: incrementing null iterator";
+	if (current == nullptr) throw std::logic_error ("Error: incrementing null iterator");
 	Iterator temp = *this;
 	current = current->next;
 	return temp;
@@ -260,7 +277,7 @@ typename List<T>::Iterator List<T>::Iterator::operator++(int) {
 
 template <class T>
 typename List<T>::Iterator& List<T>::Iterator::operator++() {
-	if (current == nullptr) throw "Error: incrementing null iterator";
+	if (current == nullptr) throw std::logic_error ("Error: incrementing null iterator");
 	current = current->next;
 	return *this;
 }
