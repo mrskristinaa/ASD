@@ -39,10 +39,10 @@ public:
 
 		Iterator& operator=(const Iterator& other);
 		T& operator*();
-		bool operator!=(const Iterator& other);
+		bool operator!=(const Iterator& other) const;
 		Iterator operator++(int);
 		Iterator& operator++();
-		bool operator==(const Iterator& other) { return current == other.current; }
+		bool operator==(const Iterator& other) const { return current == other.current; }
 	};
 	Iterator begin() { return Iterator(_head); }
 	Iterator end() { return Iterator(nullptr); }
@@ -263,7 +263,7 @@ T& List<T>::Iterator::operator*() {
 }
 
 template <class T>
-bool List<T>::Iterator::operator!=(const Iterator& other) {
+bool List<T>::Iterator::operator!=(const Iterator& other)const {
 	return current != other.current;
 }
 

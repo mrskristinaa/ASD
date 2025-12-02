@@ -89,6 +89,56 @@ TEST(ListTest, DifferentTypes) {
     list.push_back("world");
     EXPECT_EQ(list.size(), 2);
 }
+TEST(ListTest, IteratorRead) {
+    List<int> list;
+    for (int i = 0; i < 5; i++) {
+        list.push_back(i * 2);
+    }
+    std::vector<int> result;
+    for (List<int>::Iterator it = list.begin(); it != list.end(); it++) {
+        result.push_back(*it);  
+    }
+    EXPECT_EQ(result.size(), 5u);
+    EXPECT_EQ(result[0], 0);
+    EXPECT_EQ(result[1], 2);
+    EXPECT_EQ(result[2], 4);
+    EXPECT_EQ(result[3], 6);
+    EXPECT_EQ(result[4], 8);
+}
+
+TEST(ListTest, IteratorWrite) {
+    List<int> list;
+    for (int i = 0; i < 5; i++) {
+        list.push_back(0); 
+    }
+    int value = 1;
+    for (List<int>::Iterator it = list.begin(); it != list.end(); ++it) {
+        *it = value * 10;
+        value++;
+    }
+    value = 1;
+    for (List<int>::Iterator it = list.begin(); it != list.end(); ++it) {
+        EXPECT_EQ(*it, value * 10);
+        value++;
+    }
+}
+
+TEST(ListTest, IteratorEmptyList) {
+    List<int> list;
+    List<int>::Iterator it1 = list.begin();
+    EXPECT_EQ(it1, list.end());
+    EXPECT_TRUE(list.begin() == list.end());
+    int count = 0;
+    for (List<int>::Iterator it = list.begin(); it != list.end(); it++) {
+        count++;
+    }
+    EXPECT_EQ(count, 0);
+    count = 0;
+    for (List<int>::Iterator it = list.begin(); it != list.end(); ++it) {
+        count++;
+    }
+    EXPECT_EQ(count, 0);
+}
 //TEST(ListTest, can_read) {
 //    List<int>list;
 //    for (int i = 0; i < 10; i++) {
