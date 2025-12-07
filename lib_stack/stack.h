@@ -10,9 +10,8 @@ private:
     int _top;
 
 public:
-    explicit Stack(int size = 100);
+    Stack(int size = 100);
     ~Stack();
-
     void push(const T& val);
     void pop();
     inline T top() const;
