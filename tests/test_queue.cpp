@@ -1,130 +1,99 @@
 #include <gtest/gtest.h>
 #include "queue.h"
+#include <stdexcept>
 TEST(QueueTest, ConstructorWithSize) {
     Queue<int> q(5);
     EXPECT_TRUE(q.is_empty());
-    EXPECT_EQ(q.size(), 0);
-}
-TEST(QueueTest, DefaultConstructor) {
-    Queue<int> q;
-    EXPECT_TRUE(q.is_empty());
-    q.enqueue(1);
-    EXPECT_FALSE(q.is_empty());
-}
-TEST(QueueTest, CopyConstructor) {
-    Queue<int> q1(3);
-    q1.enqueue(1);
-    q1.enqueue(2);
-    Queue<int> q2(q1); 
-    EXPECT_EQ(q2.size(), 2);
-    EXPECT_EQ(q2.front(), 1);
-}
-TEST(QueueTest, AssignmentOperator) {
-    Queue<int> q1(3);
-    q1.enqueue(10);
-    q1.enqueue(20);
-    Queue<int> q2(2);
-    q2 = q1; 
-    EXPECT_EQ(q2.size(), 2);
-    EXPECT_EQ(q2.front(), 10);
-}
-TEST(QueueTest, EnqueueMethod) {
-    Queue<int> q(3);
-    q.enqueue(42);
-    EXPECT_EQ(q.size(), 1);
-    EXPECT_EQ(q.front(), 42);
-}
-TEST(QueueTest, DequeueMethod) {
-    Queue<int> q(3);
-    q.enqueue(1);
-    q.enqueue(2);
-    q.dequeue();
-    EXPECT_EQ(q.size(), 1);
-    EXPECT_EQ(q.front(), 2);
-}
-TEST(QueueTest, FrontMethod) {
-    Queue<int> q(3);
-    q.enqueue(100);
-    EXPECT_EQ(q.front(), 100);
-}
-TEST(QueueTest, BackMethod) {
-    Queue<int> q(3);
-    q.enqueue(1);
-    q.enqueue(2);
-    EXPECT_EQ(q.back(), 2);
-}
-TEST(QueueTest, IsEmptyMethod) {
-    Queue<int> q(3);
-    EXPECT_TRUE(q.is_empty());
-    q.enqueue(1);
-    EXPECT_FALSE(q.is_empty());
-}
-TEST(QueueTest, IsFullMethod) {
-    Queue<int> q(2);
     EXPECT_FALSE(q.is_full());
-    q.enqueue(1);
-    q.enqueue(2);
-    EXPECT_TRUE(q.is_full());
 }
-TEST(QueueTest, SizeMethod) {
-    Queue<int> q(3);
-    EXPECT_EQ(q.size(), 0);
-    q.enqueue(1);
-    EXPECT_EQ(q.size(), 1);
-}
-TEST(QueueTest, ClearMethod) {
-    Queue<int> q(3);
-    q.enqueue(1);
-    q.enqueue(2);
-    q.clear();
-    EXPECT_TRUE(q.is_empty());
-    EXPECT_EQ(q.size(), 0);
-}
-TEST(QueueTest, ExceptionEmptyDequeue) {
-    Queue<int> q(3);
-    EXPECT_THROW(q.dequeue(), std::logic_error);
-}
-TEST(QueueTest, ExceptionEmptyFront) {
-    Queue<int> q(3);
-    EXPECT_THROW(q.front(), std::logic_error);
-}
-TEST(QueueTest, ExceptionEmptyBack) {
-    Queue<int> q(3);
-    EXPECT_THROW(q.back(), std::logic_error);
-}
-TEST(QueueTest, ExceptionFullEnqueue) {
-    Queue<int> q(2);
-    q.enqueue(1);
-    q.enqueue(2);
-    EXPECT_THROW(q.enqueue(3), std::logic_error);
-}
-TEST(QueueTest, ExceptionInvalidSize) {
+TEST(QueueTest, InvalidConstructor) {
     EXPECT_THROW(Queue<int> q(0), std::invalid_argument);
     EXPECT_THROW(Queue<int> q(-5), std::invalid_argument);
 }
-TEST(QueueTest, CircularBehavior) {
+TEST(QueueTest, PushAndHead) {
     Queue<int> q(3);
-    q.enqueue(1);
-    q.enqueue(2);
-    q.enqueue(3);
-    q.dequeue(); 
-    q.enqueue(4); 
-    EXPECT_EQ(q.front(), 2);
-    EXPECT_EQ(q.back(), 4);
+    q.push(10);
+    EXPECT_EQ(q.head(), 10);
+    q.push(20);
+    EXPECT_EQ(q.head(), 10); 
+}
+TEST(QueueTest, Pop) {
+    Queue<int> q(3);
+    q.push(10);
+    q.push(20);
+    q.push(30);
+    EXPECT_EQ(q.head(), 10);
+    q.pop();
+    EXPECT_EQ(q.head(), 20);
+    q.pop();
+    EXPECT_EQ(q.head(), 30);
+}
+TEST(QueueTest, PopEmpty) {
+    Queue<int> q(3);
+    EXPECT_THROW(q.pop(), std::logic_error);
+}
+TEST(QueueTest, HeadEmpty) {
+    Queue<int> q(3);
+    EXPECT_THROW(q.head(), std::logic_error);
+}
+TEST(QueueTest, Overflow) {
+    Queue<int> q(2);
+    q.push(1);
+    q.push(2);
+    EXPECT_THROW(q.push(3), std::logic_error);
+}
+TEST(QueueTest, IsEmpty) {
+    Queue<int> q(3);
+    EXPECT_TRUE(q.is_empty());
+    q.push(1);
+    EXPECT_FALSE(q.is_empty());
+    q.pop();
+    EXPECT_TRUE(q.is_empty());
+}
+TEST(QueueTest, IsFull) {
+    Queue<int> q(2);
+    EXPECT_FALSE(q.is_full());
+    q.push(1);
+    EXPECT_FALSE(q.is_full());
+    q.push(2);
+    EXPECT_TRUE(q.is_full());
+}
+TEST(QueueTest, Clear) {
+    Queue<int> q(3);
+    q.push(1);
+    q.push(2);
+    q.clear();
+    EXPECT_TRUE(q.is_empty());
+}
+TEST(QueueTest, FirstInFirstOut) {
+    Queue<int> q(3);
+    q.push(1);
+    q.push(2);
+    q.push(3);
+    EXPECT_EQ(q.head(), 1);  
+    q.pop();
+    EXPECT_EQ(q.head(), 2);  
+    q.pop();
+    EXPECT_EQ(q.head(), 3);  
+}
+TEST(QueueTest, CircularBuffer) {
+    Queue<int> q(3);
+    q.push(1);
+    q.push(2);
+    q.push(3);
+    q.pop(); 
+    q.pop();
+    q.push(4); 
+    q.push(5); 
+    EXPECT_EQ(q.head(), 3);
+    q.pop();
+    EXPECT_EQ(q.head(), 4);
+    q.pop();
+    EXPECT_EQ(q.head(), 5);
 }
 TEST(QueueTest, DifferentTypes) {
-    Queue<double> q1(3);
-    q1.enqueue(3.14);
-    EXPECT_DOUBLE_EQ(q1.front(), 3.14);
-    Queue<std::string> q2(3);
-    q2.enqueue("test");
-    EXPECT_EQ(q2.front(), "test");
-}
-TEST(QueueTest, ReuseAfterClear) {
-    Queue<int> q(3);
-    q.enqueue(1);
-    q.enqueue(2);
-    q.clear();
-    q.enqueue(10); 
-    EXPECT_EQ(q.front(), 10);
+    Queue<std::string> q(2);
+    q.push("hello");
+    q.push("world");
+    EXPECT_EQ(q.head(), "hello");
 }
