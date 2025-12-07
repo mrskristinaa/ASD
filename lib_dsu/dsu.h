@@ -18,6 +18,7 @@ DSU::DSU(int size) : _size(size) {
 }
 DSU:: ~DSU() {
 	delete[] _parent;
+	delete[] _rank;
 }
 int DSU::find(int x) {
 	if (_parent[x] == x) {
