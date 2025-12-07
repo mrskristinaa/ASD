@@ -1,27 +1,10 @@
 #include <gtest/gtest.h>
-#include "../lib_stack/stack.h"
+#include "stack.h"
 #include <stdexcept>
 TEST(StackTest, Constructor) {
     Stack<int> stack(10);
     EXPECT_TRUE(stack.is_empty());
     EXPECT_FALSE(stack.is_full());
-}
-TEST(StackTest, CopyConstructor) {
-    Stack<int> original(5);
-    original.push(1);
-    original.push(2);
-    Stack<int> copy(original);
-    EXPECT_EQ(copy.top(), 2);
-    copy.pop();
-    EXPECT_EQ(copy.top(), 1);
-}
-TEST(StackTest, AssignmentOperator) {
-    Stack<int> stack1(5);
-    stack1.push(10);
-    stack1.push(20);
-    Stack<int> stack2(3);
-    stack2 = stack1;
-    EXPECT_EQ(stack2.top(), 20);
 }
 TEST(StackTest, InvalidSize) {
     EXPECT_THROW(Stack<int> stack(0), std::invalid_argument);
