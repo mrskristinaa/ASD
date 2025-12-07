@@ -33,26 +33,19 @@ TEST(DoublyLinkedListTest, IteratorWrite) {
 }
 TEST(DoublyLinkedListTest, IteratorReadAndBidirectional) {
     DoublyLinkedList<int> list;
-
     list.push_back(10);
     list.push_back(20);
     list.push_back(30);
-
-    // Только проверка инкремента
     auto it = list.begin();
     EXPECT_EQ(*it, 10);
     ++it;
     EXPECT_EQ(*it, 20);
     ++it;
     EXPECT_EQ(*it, 30);
-
-    // Проверка декремента (но не от end()!)
     auto it2 = list.begin();
-    ++it2;  // на 20
-    --it2;  // обратно на 10
+    ++it2;
+    --it2;
     EXPECT_EQ(*it2, 10);
-
-    // Простая сумма вперед
     int sum = 0;
     for (auto it = list.begin(); it != list.end(); ++it) {
         sum += *it;
