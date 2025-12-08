@@ -6,6 +6,11 @@ TEST(QueueTest, ConstructorWithSize) {
     EXPECT_TRUE(q.is_empty());
     EXPECT_FALSE(q.is_full());
 }
+TEST(QueueTest, DefaultConstructor) {
+    Queue<int> q; 
+    EXPECT_TRUE(q.is_empty());
+    EXPECT_FALSE(q.is_full());
+}
 TEST(QueueTest, InvalidConstructor) {
     EXPECT_THROW(Queue<int> q(0), std::invalid_argument);
     EXPECT_THROW(Queue<int> q(-5), std::invalid_argument);
