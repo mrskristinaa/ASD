@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "dsu.h"
+#include "../lib_dsu/dsu.h"
 TEST(DSUTest, InitialState) {
     DSU dsu(5);
     for (int i = 0; i < 5; i++) {
