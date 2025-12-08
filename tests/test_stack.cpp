@@ -1,8 +1,13 @@
 #include <gtest/gtest.h>
-#include "stack.h"
+#include "../lib_stack/stack.h"
 #include <stdexcept>
 TEST(StackTest, Constructor) {
     Stack<int> stack(10);
+    EXPECT_TRUE(stack.is_empty());
+    EXPECT_FALSE(stack.is_full());
+}
+TEST(StackTest, DefaultConstructor) {
+    Stack<int> stack; 
     EXPECT_TRUE(stack.is_empty());
     EXPECT_FALSE(stack.is_full());
 }

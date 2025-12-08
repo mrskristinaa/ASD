@@ -10,7 +10,8 @@ private:
     int _top;
 
 public:
-    Stack(int size = 100);
+    Stack();                  
+    Stack(int size);
     ~Stack();
     void push(const T& val);
     void pop();
@@ -19,7 +20,10 @@ public:
     inline bool is_full() const noexcept;
     void clear() noexcept;
 };
-
+template <class T>
+Stack<T>::Stack() : _size(100), _top(-1) {
+    _data = new T[_size];
+}
 template <class T>
 Stack<T>::Stack(int size) : _size(size), _top(-1) {
     if (size <= 0) {
@@ -27,12 +31,10 @@ Stack<T>::Stack(int size) : _size(size), _top(-1) {
     }
     _data = new T[_size];
 }
-
 template <class T>
 Stack<T>::~Stack() {
     delete[] _data;
 }
-
 template <class T>
 void Stack<T>::push(const T& val) {
     if (is_full()) {
@@ -40,7 +42,6 @@ void Stack<T>::push(const T& val) {
     }
     _data[++_top] = val;
 }
-
 template <class T>
 void Stack<T>::pop() {
     if (is_empty()) {
@@ -48,7 +49,6 @@ void Stack<T>::pop() {
     }
     --_top;
 }
-
 template <class T>
 T Stack<T>::top() const {
     if (is_empty()) {
@@ -56,20 +56,16 @@ T Stack<T>::top() const {
     }
     return _data[_top];
 }
-
 template <class T>
 bool Stack<T>::is_empty() const noexcept {
     return _top == -1;
 }
-
 template <class T>
 bool Stack<T>::is_full() const noexcept {
     return _top == _size - 1;
 }
-
 template <class T>
 void Stack<T>::clear() noexcept {
     _top = -1;
 }
-
 #endif // STACK_H
