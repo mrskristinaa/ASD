@@ -10,7 +10,7 @@ private:
     int _top;
 
 public:
-    Stack();                  
+    Stack();
     Stack(int size);
     ~Stack();
     void push(const T& val);

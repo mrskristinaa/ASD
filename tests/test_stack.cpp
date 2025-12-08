@@ -7,7 +7,7 @@ TEST(StackTest, Constructor) {
     EXPECT_FALSE(stack.is_full());
 }
 TEST(StackTest, DefaultConstructor) {
-    Stack<int> stack; 
+    Stack<int> stack;
     EXPECT_TRUE(stack.is_empty());
     EXPECT_FALSE(stack.is_full());
 }
