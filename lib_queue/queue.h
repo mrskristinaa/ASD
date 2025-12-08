@@ -10,7 +10,8 @@ private:
     int _count;     
     int _size;     
 public:
-    Queue(int size = 100);
+    Queue();
+    Queue(int size);
     ~Queue();
     void push(const T& val);
     void pop();
@@ -19,6 +20,10 @@ public:
     inline bool is_full() const noexcept;
     void clear() noexcept;
 };
+template <class T>
+Queue<T>::Queue() : _size(100), _head(0), _count(0) {
+    _data = new T[_size];
+}
 template <class T>
 Queue<T>::Queue(int size) : _size(size), _head(0), _count(0) {
     if (size <= 0) {

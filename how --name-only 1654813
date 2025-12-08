@@ -1,0 +1,89 @@
+*   [33m188cf03[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mqueue_implementation[m[33m, [m[1;31morigin/queue_implementation[m[33m)[m Merge branch 'queue_implementation' of https://github.com/mrskristinaa/ASD into queue_implementation
+[31m|[m[32m\[m  
+* [32m|[m [33m1654813[m corrected the queue
+[32m|[m [32m|[m *   [33m7488b47[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m Merge pull request #7 from mrskristinaa/stack_implementation
+[32m|[m [32m|[m [33m|[m[34m\[m  
+[32m|[m [32m|[m [33m|[m *   [33m814e331[m Merge branch 'main' into stack_implementation
+[32m|[m [32m|[m [33m|[m [35m|[m[33m\[m  
+[32m|[m [32m|[m [33m|[m [35m|[m[33m/[m  
+[32m|[m [32m|[m [33m|[m[33m/[m[35m|[m   
+[32m|[m [32m|[m * [35m|[m   [33m6536fdf[m Merge pull request #6 from mrskristinaa/dsu_implementation
+[32m|[m [32m|[m [1;31m|[m[1;32m\[m [35m\[m  
+[32m|[m [32m|[m [1;31m|[m * [35m\[m   [33m96eeb07[m Merge branch 'main' into dsu_implementation
+[32m|[m [32m|[m [1;31m|[m [1;33m|[m[1;31m\[m [35m\[m  
+[32m|[m [32m|[m [1;31m|[m [1;33m|[m[1;31m/[m [35m/[m  
+[32m|[m [32m|[m [1;31m|[m[1;31m/[m[1;33m|[m [35m|[m   
+[32m|[m [32m|[m [1;31m|[m * [35m|[m [33mabdc286[m[33m ([m[1;31morigin/dsu_implementation[m[33m, [m[1;32mdsu_implementation[m[33m)[m corrected tests at DSU
+[32m|[m [32m|[m [1;31m|[m [1;34m|[m * [33mfe19aaa[m[33m ([m[1;31morigin/stack_implementation[m[33m, [m[1;32mstack_implementation[m[33m)[m corrected the dsu
+[32m|[m [32m|[m [1;31m|[m [1;34m|[m * [33m3602e7e[m corrected the stack
+[32m|[m [32m|[m [1;31m|[m [1;34m|[m [1;34m|[m * [33m1e698c1[m[33m ([m[1;31morigin/TVector[m[33m, [m[1;32mTVector[m[33m)[m Add TVector with iterator
+[32m|[m [32m|[m [1;31m|[m [1;34m|[m[1;31m_[m[1;34m|[m[1;31m/[m  
+[32m|[m [32m|[m [1;31m|[m[1;31m/[m[1;34m|[m [1;34m|[m   
+[32m|[m [32m|[m * [1;34m|[m [1;34m|[m   [33md0061b0[m Merge pull request #5 from mrskristinaa/doubly-linked-list
+[32m|[m [32m|[m [1;36m|[m[31m\[m [1;34m\[m [1;34m\[m  
+[32m|[m [32m|[m [1;36m|[m * [1;34m|[m [1;34m|[m [33mb9e779a[m[33m ([m[1;31morigin/doubly-linked-list[m[33m, [m[1;32mdoubly-linked-list[m[33m)[m Doubly linked list with iterator
+[32m|[m [32m|[m [1;36m|[m[1;36m/[m [1;34m/[m [1;34m/[m  
+[32m|[m [32m|[m * [1;34m|[m [1;34m|[m [33m1a298ba[m fix test list
+[32m|[m [32m|[m * [1;34m|[m [1;34m|[m [33m081d932[m Fix DSU and update tests
+[32m|[m [32m|[m * [1;34m|[m [1;34m|[m [33m4e759c3[m Fix List implementation and tests
+[32m|[m [32m|[m * [1;34m|[m [1;34m|[m [33m65a9932[m Fix Stack implementation and add tests
+[32m|[m [32m|[m * [1;34m|[m [1;34m|[m   [33m6b1cc30[m Merge pull request #4 from mrskristinaa/queue_implementation
+[32m|[m [32m|[m [32m|[m[32m\[m [1;34m\[m [1;34m\[m  
+[32m|[m [32m|[m [32m|[m[32m/[m [1;34m/[m [1;34m/[m  
+[32m|[m [32m|[m[32m/[m[32m|[m [1;34m|[m [1;34m|[m   
+[32m|[m * [32m|[m [1;34m|[m [1;34m|[m [33m2f99160[m Merge branch 'main' into queue_implementation
+[32m|[m[32m/[m[32m|[m [32m|[m [1;34m|[m [1;34m|[m 
+[32m|[m [32m|[m[32m/[m [1;34m/[m [1;34m/[m  
+* [32m|[m [1;34m|[m [1;34m|[m [33m4543839[m tests added to Queue
+* [32m|[m [1;34m|[m [1;34m|[m [33m826ce3f[m added definition of class Queue
+* [32m|[m [1;34m|[m [1;34m|[m [33m1b3f941[m added definition of class Queue
+* [32m|[m [1;34m|[m [1;34m|[m [33mc15c5e3[m added definition of class Queue
+[35m|[m [32m|[m [1;34m|[m [1;34m|[m * [33ma4d8301[m[33m ([m[1;31morigin/list_implementation[m[33m, [m[1;32mlist_implementation[m[33m)[m Remove stack.h from list module
+[35m|[m [32m|[m [1;34m|[m[32m_[m[1;34m|[m[32m/[m  
+[35m|[m [32m|[m[32m/[m[1;34m|[m [1;34m|[m   
+[35m|[m * [1;34m|[m [1;34m|[m   [33m5b955b1[m Merge pull request #3 from mrskristinaa/list_implementation
+[35m|[m [1;31m|[m[1;32m\[m [1;34m\[m [1;34m\[m  
+[35m|[m [1;31m|[m * [1;34m\[m [1;34m\[m   [33m99d5094[m Merge branch 'main' into list_implementation
+[35m|[m [1;31m|[m [1;33m|[m[1;31m\[m [1;34m\[m [1;34m\[m  
+[35m|[m [1;31m|[m [1;33m|[m[1;31m/[m [1;34m/[m [1;34m/[m  
+[35m|[m [1;31m|[m[1;31m/[m[1;33m|[m [1;34m|[m [1;34m|[m   
+[35m|[m * [1;33m|[m [1;34m|[m [1;34m|[m   [33m3e41caa[m Merge pull request #2 from mrskristinaa/stack_implementation
+[35m|[m [1;35m|[m[1;34m\[m [1;33m\[m [1;34m\[m [1;34m\[m  
+[35m|[m [1;35m|[m [1;34m|[m [1;33m|[m[1;34m_[m[1;34m|[m[1;34m/[m  
+[35m|[m [1;35m|[m [1;34m|[m[1;34m/[m[1;33m|[m [1;34m|[m   
+[35m|[m [1;35m|[m * [1;33m|[m [1;34m|[m   [33m470b424[m Merge branch 'main' into stack_implementation
+[35m|[m [1;35m|[m [31m|[m[1;35m\[m [1;33m\[m [1;34m\[m  
+[35m|[m [1;35m|[m [31m|[m[1;35m/[m [1;33m/[m [1;34m/[m  
+[35m|[m [1;35m|[m[1;35m/[m[31m|[m [1;33m|[m [1;34m|[m   
+[35m|[m * [31m|[m [1;33m|[m [1;34m|[m [33m02b4ea9[m Merge pull request #1 from mrskristinaa/dsu_implementation
+[35m|[m[35m/[m[1;34m|[m [31m|[m [1;33m|[m [1;34m|[m 
+[35m|[m [1;34m|[m [31m|[m[1;34m_[m[1;33m|[m[1;34m/[m  
+[35m|[m [1;34m|[m[1;34m/[m[31m|[m [1;33m|[m   
+[35m|[m * [31m|[m [1;33m|[m   [33m3c7ad65[m Merge branch 'main' into dsu_implementation
+[35m|[m [35m|[m[36m\[m [31m\[m [1;33m\[m  
+[35m|[m [35m|[m * [31m|[m [1;33m|[m [33m31a4815[m delete extra files
+[35m|[m [35m|[m * [31m|[m [1;33m|[m [33mc8eda74[m add lib stack and define class Stack
+[35m|[m [35m|[m[35m/[m [31m/[m [1;33m/[m  
+[35m|[m[35m/[m[35m|[m [31m|[m [1;33m|[m   
+[35m|[m * [31m|[m [1;33m|[m [33m5208f6a[m added realization of optimization DSU
+[35m|[m[35m/[m [31m/[m [1;33m/[m  
+[35m|[m * [1;33m|[m [33mb610809[m added definition of class Algorithms
+[35m|[m * [1;33m|[m [33m4f132da[m added definition of class Stack
+[35m|[m[35m/[m [1;33m/[m  
+[35m|[m * [33m62abff0[m added stack on list
+[35m|[m * [33m812805f[m tests have been corrected
+[35m|[m * [33m545ebd3[m the test in the Iterator class has been corrected
+[35m|[m * [33mfed05ae[m added realization of class List with class Iterator
+[35m|[m * [33md046f13[m added realization of class List with tests
+[35m|[m[35m/[m  
+* [33m3519afd[m Update README.md
+*   [33me0fcbe9[m Merge branch 'main' of https://github.com/UsovaMA/ASD
+[1;31m|[m[1;32m\[m  
+[1;31m|[m * [33m36c8cc0[m update README-file
+* [1;32m|[m [33ma2f909a[m added CMakeList for build tests folder
+[1;32m|[m[1;32m/[m  
+* [33m9f4507c[m added some fixes
+* [33m8ad2c81[m added some fixes
+* [33m7e3f981[m added some fixes
+* [33m06aa217[m add first version
+* [33m8085c6d[m Initial commit
